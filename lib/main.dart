@@ -3,14 +3,7 @@ import 'package:doctorrating/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:doctorrating/services/auth.dart';
 void main() {
-  runApp(MultiProvider(
-    providers:[
-     ChangeNotifierProvider(create: (context)=>Auth()),
-     Provider(create: (context)=>)
-    ],
-    child:MyApp()
-  )
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme:ThemeData(
         primarySwatch:Colors.blue
       ), 
-      home: HomeScreen()
+      home: DetailAudio()
     );
   }
 }
