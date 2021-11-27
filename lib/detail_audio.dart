@@ -13,6 +13,7 @@ class _DetailAudioState extends State<DetailAudio> {
     final double screenHeight=MediaQuerry.of(context).size.height;
     final double screenWidth=MediaQuerry.of(context).size.width;
     return Scaffold(
+      backgroundColor:Colors.blue[100],
       appBar:AppBar(
        title:Text('music player')
       ),
@@ -32,9 +33,36 @@ class _DetailAudioState extends State<DetailAudio> {
           left:0,
           right:0,
           child:AppBar(
-            
+            leading:IconButton(
+              icon:Icon(Icons.arrow_back_ios),
+              onPressed:(){
+
+              }
+            ),
+            actions:[
+             IconButton(
+              icon:Icon(Icons.search),
+              onPressed:(){
+
+              }
+             )
+            ],
+            backgroundColor:transparent,
+            elevation:0.0
           )
          ),
+        positioned(
+          left:0,
+          right:0,
+          top:screenHeight/5,
+          child:Container(
+            decoration:BoxDecoration(
+              color:Colors.white,
+              borderRadius:BorderRadius.circular(30),
+
+            )
+          )
+        )
        ]
       )
     );
