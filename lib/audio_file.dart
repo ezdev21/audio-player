@@ -15,7 +15,7 @@ class _AudioFileState extends State<AudioFile> {
   final String path="C:/downloads/atgebamalugn.mp4";
   bool isPlaying=false;
   bool isPaused=false;
-  bool isLoop=false;
+  bool isRepeat=false;
   List<IconData> _icons=[
     Icons.play_circle_fill,
     Icons.paused_circle_filled
@@ -62,14 +62,72 @@ class _AudioFileState extends State<AudioFile> {
     return Container(
      child:Row(
        crossAxisAlignment:CrossAxisAlignment.center,
-       mainAxisAlignment:MainAxisAlignment.spaceEvenly
+       mainAxisAlignment:MainAxisAlignment.spaceEvenly,
        children:[
-         btnStart()
+        btnRepeat(), 
+        btnSlow(),
+        btnStart(),
+        btnFast(),
+        btnLoop()
        ]
      )
     );
   }
+  Widget slider(){
+    return Slider(
+      activeColor:Colors.blue,
+      inactiveColor:Colors.grey[400],
+      value:_position.inSeocnds.toDouble(),
+      min:0.0,
+      max:_duration.inSeconds.toDouble(),
+      onChange:(double value){
+        setState((){
+         changeToSecond(value.toInt());
+         value=value;
+        });
+      }
+    )
+  }
+  void changeToSecond(int second){
+    Duration newDuration=Duration(seconds:second);
+    this.widget.player.seek(newDuration);
+  }
+  Widget btnFast(){
+   return IconButton(
+    icon:Icon(Icons.forward,size:15,color,Colors.blue)
+    onPressed:(){
+     this.widget.player.setPlaybackRate({playBackRate:1.5});
+    }
+   );
+  }
+  Widget btnSlow(){
+   return IconButton(
+    icon:Icon(Icons.backward,size:15,color:Colors.blue)
+    onPressed:(){
+     this.widget.player.setPlaybackRate({playBackRate:0.5});
+    }
+   );
+  }
+  Widget btnRepeat(){
+    return IconButton(
+      icon:Icon(Icons.repeat)
+      size:15,
+      color:Colors.blue,
+      onPressed:(){
+        
+      }
+    );
+  }
+  Widget btnLoop(){
+    return IconButton(
+      icon:Icon(Icons.loop)
+      size:15,
+      color:Colors.blue,
+      onPressed:(){
 
+      }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,7 +143,8 @@ class _AudioFileState extends State<AudioFile> {
               ]
             )
           ),
-          loadAsset()
+          slider(),
+          loadAsset(),
         ]
       )
     );
