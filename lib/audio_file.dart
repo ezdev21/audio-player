@@ -36,15 +36,28 @@ class _AudioFileState extends State<AudioFile> {
     });
     this.widget.player.setUrl(path);
   }
+
   Widget btnStart(){
     return IconButton(
       padding: const EdgeInsets.only(bottom:10),
-      icon:isPlaying? Icon(_icons[1]) : Icon(_icons[0]),
+      icon:isPlaying? Icon(_icons[1],size:50,color:Colors.blue) : Icon(_icons[0],size:50,color:Colors.blue),
       onPressed:(){
-       this.widget.player.play(path);
+        if(!isPlaying){
+         this.widget.player.play(path);
+         setState((){
+         isPlaying=true;
+         });
+        }
+        else if(isPlaying){
+          this.widget.player.pause(),
+          setState((){
+           isPlaying=false;
+          });
+        }
       }
     );
   }
+
   Widget loadAsset(){
     return Container(
      child:Row(
@@ -56,6 +69,7 @@ class _AudioFileState extends State<AudioFile> {
      )
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,7 +80,8 @@ class _AudioFileState extends State<AudioFile> {
             child:Row(
               mainAxisAlignment:MainAxisAlignment.spaceBetween,
               children:[
-
+                Text(_position.toString().split('.').[0],style:TextStyle(fontSize:16)),
+                Text(_duration.toString().split('.').[0],style:TextStyle(fontSize:16))
               ]
             )
           ),
