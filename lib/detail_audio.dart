@@ -63,16 +63,45 @@ class _DetailAudioState extends State<DetailAudio> {
             child:Column(
              chldren:[
                sizedBox(height:screenHeight*0.01),
-               Text('Lij Michael atgebam alugn',
+               Text('atgebam alugn',
                 style:TextStyle(
                   fontSize:30,
                   fontWeight:FontWeight.bold,
                   fontFamily:"avenir"
                 )
-               )
+               ),
+               Text("Lij Michael",style:TextStyle(fontSize:20))
              ] 
             )
           )
+        ),
+        positioned(
+         top:screenHeight*0.12,
+         left:(screenWidth-150)/2,
+         right:(screenWidth-150)/2,
+         height:screenHeight*0.16,
+         child:Container(
+           decoration:BoxDecoration(
+             color:Colors.grey[300],
+             borderRadius:BorderRadius.circular(20),
+             border:Border.all(color:Colors.grey[300],width:2)
+           ),
+           child:Padding(
+             padding:const EdgeInsets.all(20),
+             child:Container(
+               decoration:BoxDecoration(
+               //borderRadius:BorderRadius.circular(20),
+               shape:BoxShape.circle,
+               border:Border.all(color:Colors.grey[300],width:2),
+               image:DecorationImage(
+                image:AssetImage(),
+                fit:BoxFit.cover
+               )
+              ),
+              
+             )
+           )
+         )
         )
        ]
       )
