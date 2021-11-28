@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:audio-player/audio_file.dart";
 
 class DetailAudio extends StatefulWidget {
   DetailAudio({Key? key}) : super(key: key);
@@ -8,6 +9,12 @@ class DetailAudio extends StatefulWidget {
 }
 
 class _DetailAudioState extends State<DetailAudio> {
+  AudioPlayer player;
+  @ovveride
+  void initState() {
+    super.initState();
+    player=AudioPlayer();
+  }
   @override
   Widget build(BuildContext context) {
     final double screenHeight=MediaQuerry.of(context).size.height;
@@ -70,7 +77,8 @@ class _DetailAudioState extends State<DetailAudio> {
                   fontFamily:"avenir"
                 )
                ),
-               Text("Lij Michael",style:TextStyle(fontSize:20))
+               Text("Lij Michael",style:TextStyle(fontSize:20)),
+               AudioFile(player:player),
              ] 
             )
           )
@@ -90,7 +98,6 @@ class _DetailAudioState extends State<DetailAudio> {
              padding:const EdgeInsets.all(20),
              child:Container(
                decoration:BoxDecoration(
-               //borderRadius:BorderRadius.circular(20),
                shape:BoxShape.circle,
                border:Border.all(color:Colors.grey[300],width:2),
                image:DecorationImage(
