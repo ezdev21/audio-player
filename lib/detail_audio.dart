@@ -58,8 +58,19 @@ class _DetailAudioState extends State<DetailAudio> {
           child:Container(
             decoration:BoxDecoration(
               color:Colors.white,
-              borderRadius:BorderRadius.circular(30),
-
+              borderRadius:BorderRadius.circular(30)
+            )
+            child:Column(
+             chldren:[
+               sizedBox(height:screenHeight*0.01),
+               Text('Lij Michael atgebam alugn',
+                style:TextStyle(
+                  fontSize:30,
+                  fontWeight:FontWeight.bold,
+                  fontFamily:"avenir"
+                )
+               )
+             ] 
             )
           )
         )
