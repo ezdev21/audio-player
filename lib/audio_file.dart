@@ -16,6 +16,7 @@ class _AudioFileState extends State<AudioFile> {
   bool isPlaying=false;
   bool isPaused=false;
   bool isRepeat=false;
+  Color repeatColor=Colors.gray[500];
   List<IconData> _icons=[
     Icons.play_circle_fill,
     Icons.paused_circle_filled
@@ -35,6 +36,20 @@ class _AudioFileState extends State<AudioFile> {
       });
     });
     this.widget.player.setUrl(path);
+    this.widget.player.onPlayerCompletion.listen(event=>{
+      setState((){
+        _position=Duration(seconds:0);
+        if(isRepeat){
+         isPlaying=true;
+        }
+        else{
+         isPlaying=false;
+         isRepeat=false;
+        }
+        isPlaying=true;
+        isRepeat=false;
+      });
+    });
   }
 
   Widget btnStart(){
@@ -112,9 +127,20 @@ class _AudioFileState extends State<AudioFile> {
     return IconButton(
       icon:Icon(Icons.repeat)
       size:15,
-      color:Colors.blue,
+      color:color,
       onPressed:(){
-        
+        if(!isRepeat){
+          this.widget.player.setReleaseMode(ReleaseMode.LOOP);
+          setState((){
+           isRepeat=true;
+           color=Colors.blue;
+           isRepeat=false;
+          });
+        }
+        else if(isRepeat){
+          this.widget.player.setReleaseMode(ReleaseMode.RELEASE);
+          color=Colors.grey[500]
+        }
       }
     );
   }

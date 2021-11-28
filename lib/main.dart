@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:doctorrating/screens/home_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:doctorrating/services/auth.dart';
+import 'package:music-player/music_menu.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme:ThemeData(
         primarySwatch:Colors.blue
       ), 
-      home: DetailAudio()
+      home: MusicMenu()
     );
   }
 }
