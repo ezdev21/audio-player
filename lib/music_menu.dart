@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:music-player/music_template.dart";
 
 class MusicMenu extends StatefulWidget {
   MusicMenu({Key? key}) : super(key: key);
@@ -13,7 +14,9 @@ class _MusicMenuState extends State<MusicMenu> {
   Widget build(BuildContext context) {
     return Container(
       child:Row(
-        children:
+        children:musics.map(music=>{
+          return MusicTemplate(music);
+        })
       )
     );
   }
